@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="Viagem" lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+
+		<!-- Angular (modudelo, controller e directive) -->
+		<script src="js/viagens.module.js"></script>
+		<script src="js/viagens.controller.js"></script>
+		<script src="js/viagens.directive.js"></script>
+
+		<title>Atech - Sistema de Cadastro</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		<!-- Personalização -->
+		<link href="css/style.css" rel="stylesheet">
+		<!-- Font Googlefonts -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="http://www.atech.com.br/wp-content/uploads/2016/12/atech-favico-gray.png" />
+
+	</head>
+	<body>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			    	<span class="sr-only">Toggle navigation</span>
+			    	<span class="icon-bar"></span>
+			    	<span class="icon-bar"></span>
+			    	<span class="icon-bar"></span>
+			  	</button>
+			  	<a class="navbar-brand" href="#"><strong>ATECH</strong> - <span class="font-green">Sistema de Cadastro</span></a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  		<ul class="nav navbar-nav navbar-right">
+		    		<li><a href="#"><strong>Perfil</strong></a></li>
+		  		</ul>
+				<form class="navbar-form navbar-right">
+		    		<div class="form-group">
+		      			<input type="text" class="form-control" placeholder="Buscar">
+		    		</div>
+		  		</form>      
+			</div>
+		</div>
+	</nav>
+
+	<div class="container" ng-controller="ViagensController">
+      	<h1 class="page-header">{{ titulo }}</h1>
+      	<p>{{ descricao }}</p>	
+      		<form name="form" class="form" ng-submit="criarViagem()">
+          		<div class="row">
+          			<div class="col-md-4">
+          				<label>
+	          				Origem<br/>
+          					<input required type="text" tabindex="1" name="origem" ng-model="novaViagem.origem">
+          				</label>
+          			</div>
+          			<div class="col-md-4">
+          				<label>
+	          				Destino<br/>
+          					<input required type="text" tabindex="2" name="destino" ng-model="novaViagem.destino">
+         				</label>  					
+         			</div>
+         			<div class="col-md-4 display">
+  						<label class="date">
+  							Data da Viagem<br/>
+  							<input required type="date" tabindex="3" name="data" ng-model="novaViagem.data">
+  						</label>
+  						<label class="time">
+  							Hora<br/>
+          					<input required type="time" tabindex="4" id="startTime" name="hora" ng-model="novaViagem.hora">
+          				</label>
+          			</div>
+          			<div class="col-md-4">
+	          			<div class="row">
+	          				<div class="col-md-6">
+	          					<strong>Tipo de Veículo</strong><br/>
+	          					<div class="opcoes">
+									<label for="carro" ng-class="{checked: novaViagem.tipo == 'Carro'}">
+										<input type="radio" id="carro" name="tipo" tabindex="5" value="Carro" ng-model="novaViagem.tipo" >
+										Carro
+									</label> 
+	      							<label for="moto"  ng-class="{checked: novaViagem.tipo == 'Moto'}">
+	      								<input type="radio" id="moto"  name="tipo" tabindex="6"  value="Moto" ng-model="novaViagem.tipo">
+			      						Moto
+	      							</label>
+	      						</div>
+	      					</div>
+
+	      					<div class="col-md-6">
+	          					<strong>Terá passageiro?</strong><br/>
+	          					<div class="opcoes">
+		      						<label for="sim" ng-class="{checked: novaViagem.passageiros == 'sim'}">
+		      							<input type="radio" id="sim" name="passageiro" tabindex="7" value="sim" ng-model="novaViagem.passageiros">
+	      								Sim
+	      							</label> 
+	      							<label for="nao" ng-class="{checked: novaViagem.passageiros == 'nao'}">
+	      								<input type="radio" id="nao" name="passageiro" tabindex="8" value="nao" ng-model="novaViagem.passageiros">
+		      							Não
+	      							</label> 
+	      						</div>
+	      					</div>
+	          			</div>
+          			</div>
+          			<div class="col-md-4">
+      					<label>
+	          				Nome do Motorista<br/>
+      						<input required type="text" name="Nome" tabindex="9" ng-model="novaViagem.nomepiloto">          				
+      					</label>
+      				</div>
+      				<div class="col-md-4">
+      					<label>
+	          				Email do motorista<br/>
+      	    				<input required type="email" name="email" ng-model="novaViagem.emailpiloto" tabindex="10">          	    		
+      	    			</label>     
+          			</div>
+          		</div>
+          		<div>
+
+	          	    <div ng-show="novaViagem.passageiros == 'sim'">
+	          	    	<div class="row">
+	          	    		<div class="col-md-6">
+		          				<label>
+		          					Nome do 1º Passageiro<br/>
+	          						<input type="text" name="Nome" tabindex="11" ng-model="novaViagem.nomepassageiro1">          				
+	          					</label>
+	          				</div>
+	          				<div class="col-md-6">
+		          				<label>
+		          					Email do 1º Passageiro<br/>
+	          	    				<input type="email" name="email" ng-model="novaViagem.emailpassageiro1" tabindex="12">          	    		
+	          	    			</label> 
+	          	    		</div>
+	          	    	</div>
+
+	          	    	<div ng-show="novaViagem.tipo == 'Carro'">
+	          	    		<div class="row">
+	          	    			<div class="col-md-6">
+		          					<label>
+				          				Nome do 2º Passageiro<br/>
+		          						<input type="text" name="Nome" tabindex="13" ng-model="novaViagem.nomepassageiro2">          				
+		          					</label>
+		          				</div>
+		          				<div class="col-md-6">
+		          					<label>
+				          				Email do 2º Passageiro<br/>
+		          	    				<input type="email" name="email" ng-model="novaViagem.emailpassageiro2" tabindex="14">          	    		
+		          	    			</label> 
+		          	    		</div>
+		          	    	</div>
+		          	    	<div class="row">
+		          	    		<div class="col-md-6">
+		          					<label>
+				          				Nome do 3º Passageiro<br/>
+		          						<input type="text" name="Nome" tabindex="15" ng-model="novaViagem.nomepassageiro3">          				
+		          					</label>
+		          				</div>
+		          				<div class="col-md-6">
+		          					<label>
+				          				Email do 3º Passageiro<br/>
+		          	    				<input type="email" name="email" ng-model="novaViagem.emailpassageiro3" tabindex="16">          	    		
+		          	    			</label>
+		          	    		</div>
+		          	    	</div>
+	          	    	</div>
+		          	</div>
+	          	</div>  
+          		<button type="submit" class="btn">Cadastrar</button>
+      		</form>
+		<div class="lista-viagens">
+			<h2>Viagens Cadastradas</h2>
+			<div class="row">
+				<atech-viagens ng-repeat="viagens in viagens"></atech-viagens>
+			</div>
+		</div>
+    </div>
+
+	<script>
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+
+	</body>
+</html>

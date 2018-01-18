@@ -1,0 +1,41 @@
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="viagens">				
+			<div class="top-color">
+				<p>{{viagens.origem}}</p>	
+					<p class="to"><i class="glyphicon glyphicon-menu-right"></i></p>
+				<p>{{viagens.destino}}</p>
+			</div>
+			<button class="btn btn-xs btn-danger excluir" ng-click="removerViagem(viagens.id);" title="Excluir">X</button>						
+			<div class="container-fluid viagens-extra">
+				<p><strong>{{viagens.data}}</strong> às <strong>{{viagens.hora}}</strong></p>
+				<p>Tipo de veículo{{viagens.tipo}}</p>
+				<p>Dados do motorista:<br/> {{viagens.nomepiloto}} | <a href="mailto:{{viagens.emailpiloto}}">{{viagens.emailpiloto}}</a></p>
+				<div class="align" ng-class="[
+									{pass1: !viagens.nomepassageiro1 == ''},
+									{pass2: !viagens.nomepassageiro2 == ''},
+									{pass3: !viagens.nomepassageiro3 == '' }]">
+					<p class="passageiros" ng-hide="
+					viagens.nomepassageiro1 == '' ||
+					viagens.nomepassageiro1 === undefined">
+						<i class="glyphicon glyphicon-user" data-toggle="tooltip"
+						title="{{viagens.nomepassageiro1}} | {{viagens.emailpassageiro1}}"></i>
+					</p>
+					<p class="passageiros" ng-hide="
+					viagens.nomepassageiro2 == '' || 
+					viagens.nomepassageiro2 === undefined">
+						<i class="glyphicon glyphicon-user" data-toggle="tooltip" 
+						title="{{viagens.nomepassageiro2}} | {{viagens.emailpassageiro2}}"></i>
+					</p>
+					<p class="passageiros" ng-hide="
+					viagens.nomepassageiro3 == '' || 
+					viagens.nomepassageiro3 === undefined">
+						<i class="glyphicon glyphicon-user" data-toggle="tooltip"
+						title="{{viagens.nomepassageiro3}} | {{viagens.emailpassageiro3}}"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

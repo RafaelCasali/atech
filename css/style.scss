@@ -1,0 +1,191 @@
+$size-1: 4px;
+$size-2: 8px;
+$size-3: 12px;
+$size-4: 16px;
+$size-5: 20px;
+$size-6: 24px;
+$size-7: 28px;
+$size-8: 32px;
+
+$border: 1px solid rgba(0,0,0,0.15);
+
+$colorgreen: #00d5a3;
+$colorsilver: #e6e6e6;
+
+body {
+	font-family: 'Montserrat', sans-serif!important;
+	background-color: #f4f4f4!important;
+	color: #6e6e6e;
+}
+
+h1 {
+	font-size: 26px;
+	font-family: 'Montserrat', sans-serif!important;
+	font-weight: 700;
+}
+h2 {
+	font-size: 21px;
+	font-family: 'Montserrat', sans-serif!important;
+	font-weight: 700;
+}
+.font-green {
+	color: $colorgreen;
+}
+
+.navbar-brand, .navbar-toggle, .navbar-collapse {
+	margin-top: 10px;
+}
+
+.navbar-default {
+	background-color: #FFF!important;
+	min-height: 70px;
+}
+
+.row {
+	margin-top: $size-2;
+	margin-bottom: $size-2;
+}
+
+
+.form {
+	.date {
+		width: 60%;
+		margin-right: 5%;
+	}
+	.time {
+		width: 35%;
+	}
+	label {
+		width: 100%;
+		input {
+			padding: $size-2!important;
+			border-radius: 5px!important;
+			border: $border;
+			width: 100%;
+			font-size: 14px;
+			&:focus {
+				outline: $colorgreen 1px solid;
+			}
+		}
+		input[type=radio] {
+			width: 15px;
+			display: none;
+		}
+	}
+	.opcoes {
+		display: flex;
+		label {
+			width: 50%;
+			padding: $size-2 $size-1;
+			background: #FFF;
+			color: $colorgreen;
+			text-align: center;
+			cursor: pointer;
+			border: $border;
+			border-top-right-radius: 5px;
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 5px;
+			&:first-child {
+				border-top-right-radius: 0px;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 0px;
+			}
+			&:hover {
+				background: #71e2c6;
+				color: #FFF;
+			}
+		}
+		.checked {
+			background: $colorgreen;
+			color: #FFF;			
+		}
+	}
+	.btn {
+		background: $colorgreen;
+		color: #FFF;
+		font-weight: 700;
+	}
+}
+
+.display {
+	display: flex;
+}
+
+.lista-viagens {
+	border-top: $border;
+	margin-top: $size-4;
+	.viagens {
+		&:hover .excluir {
+			top: 0px;
+			opacity: 1;
+			transition: 0.5s;
+			z-index: 0;
+		}
+		.excluir {
+			opacity: -1;
+			position: absolute;
+	    	right: $size-4;
+	    	top: $size-1;
+	    	transition: 0.8s;
+	    	z-index: -1;
+		}		
+		.top-color {
+			border-top-left-radius: $size-1; 
+			border-top-right-radius: $size-1; 
+			background: $colorgreen;
+			color: #FFF;
+			display: flex;
+			position: relative;
+			z-index: 0;
+			padding-top: $size-3;
+			p {
+				font-size: $size-4;
+				width: 40%;
+				text-align: center;
+				margin-top: $size-3;
+			}
+			.to {
+				font-size: $size-8;
+				font-weight: 700;
+				width: 20%;
+				margin-top: $size-1;
+			}
+		}	
+		.viagens-extra {
+			text-align: center;
+			margin-top: $size-3;
+			.passageiros {
+				float: left;
+				border-radius: 50%;
+				background-color: $colorgreen;
+				font-size: $size-5;
+				color: #FFF;
+				margin: 0 $size-1 $size-2 $size-1; 
+				padding: $size-1 $size-2;
+			}
+			.align {
+				margin: 0 auto;
+			}
+			.pass1 {
+				width: 44px;
+			}
+			.pass2 {
+				width: 88px;	
+			}
+			.pass3 {
+				width: 132px;
+			}						
+			a {
+				text-decoration: none;
+				color: $colorgreen;
+				&:hover {
+					text-decoration: underline;
+					color: $colorgreen;
+				}
+			}
+		}
+	}
+}
+
